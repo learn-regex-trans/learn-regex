@@ -399,23 +399,20 @@ are not after the word `The` or `the`.
 
 [Test the regular expression](https://regex101.com/r/8Efx5G/1)
 
-## 5. Flags
+## 5. 플래그(Flags)
 
-Flags are also called modifiers because they modify the output of a regular expression. These flags can be used in any order or
-combination, and are an integral part of the RegExp.
+플래그는 변경자(modifier)라고도 불린다. 왜냐하면 정규식의 결과물을 수정할 수 있기 떄문이다.
+이러한 플래그는 순서에 관계없이 조합하여 사용 가능하며, 정규식의 필수적인 요소이다.
 
 |Flag|Description|
 |:----:|----|
-|i|Case insensitive: Sets matching to be case-insensitive.|
-|g|Global Search: Search for a pattern throughout the input string.|
-|m|Multiline: Anchor meta character works on each line.|
+|i|대소문자 무시: 대소문자 구분 특성이 무시된다.|
+|g|전역 검색: 매칭에 해당하는 여러 개의 일치항목을 찾는다.|
+|m|멀티라인(Multiline): 앵커(Anchor) 문자가 각 행마다 작동한다.|
 
-### 5.1 Case Insensitive
+### 5.1 대소문자 무시
 
-The `i` modifier is used to perform case-insensitive matching. For example, the regular expression `/The/gi` means: uppercase letter
-`T`, followed by lowercase character `h`, followed by character `e`. And at the end of regular expression the `i` flag tells the
-regular expression engine to ignore the case. As you can see we also provided `g` flag because we want to search for the pattern in
-the whole input string.
+`i` 변경자(modifier)는 대소문자 무시를 한 결과를 보여준다. 예를 들어, 정규식 `/The/gi`은 `the`, `THE`, `THe` 와 같은 대소문자가 무시된 문자를 찾는다. 참고적으로 여기서 g 플래그는 전체 문자열에서 매칭된 모든 문자열을 반환하는 것을 의미한다.
 
 <pre>
 "The" => <a href="#learn-regex"><strong>The</strong></a> fat cat sat on the mat.
