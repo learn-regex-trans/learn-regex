@@ -13,22 +13,17 @@
 
 ## 정규식(Regular Expression)이란 무엇인가?
 
-> Regular expression is a group of characters or symbols which is used to find a specific pattern from a text.
+> 정규 표현식은 텍스트에서 특정 패턴을 찾는데 사용되는 문자나 심볼릭의 집합이다.
 
-A regular expression is a pattern that is matched against a subject string from left to right. The word "Regular expression" is a
-mouthful, you will usually find the term abbreviated as "regex" or "regexp". Regular expression is used for replacing a text within
-a string, validating form, extract a substring from a string based upon a pattern match, and so much more.
+정규 표현식(Regular expression)은 문자열에 대해 왼쪽에서 오른쪽으로 일치하는 패턴으로, 보통 "regex" 또는 "regexp", "정규식"으로 줄여 말할수 있다. 정규 표현식은 문자열 재배치, validating form, 패턴 일치에 따라 문자열에서 하위 문자열 추출 등에 사용된다.
 
-Imagine you are writing an application and you want to set the rules for when a user chooses their username. We want to
-allow the username to contain letters, numbers, underscores and hyphens. We also want to limit the number of
-characters in username so it does not look ugly. We use the following regular expression to validate a username:
+사용자가 username을 입력할때 규칙을 설정한다고 가정하자. 우리는 username이 이상하지않도록 문자, 숫자 밑줄(`_`), 하이픈(`-`)만 포함하고 길이제한을 설정하고자 할 때, 다음과 같은 정규 표현식으로 검증한다:
 <br/><br/>
 <p align="center">
 <img src="https://i.imgur.com/ekFpQUg.png" alt="Regular expression">
 </p>
 
-Above regular expression can accept the strings `john_doe`, `jo-hn_doe` and `john12_as`. It does not match `Jo` because that string
-contains uppercase letter and also it is too short.  
+위의 정규식은 `join_doe`, `jo-hn_doe`, `john12_as`를 허용한다. 그리나 대문자와 너무 짧은 문자열은 허용하지 않으므로 `Jo`는 매칭되지 않는다.
 
 ## Table of Contents
 
