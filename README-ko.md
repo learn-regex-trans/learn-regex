@@ -81,26 +81,25 @@ case-sensitive so the regular expression `The` would not match the string `the`.
 
 [Test the regular expression](https://regex101.com/r/1paXsy/1)
 
-## 2. Meta Characters
+## 2. 메타 문자
 
-Meta characters are the building blocks of the regular expressions.  Meta characters do not stand for themselves but instead are
-interpreted in some special way. Some meta characters have a special meaning and are written inside square brackets.
-The meta characters are as follows:
+메타 문자는 정규 표현식의 구성 요소(building blocks)입니다. 메타 문자들은 문자 그대로를 의미하기보다는 좀 특별한 의미로 해석됩니다. 몇몇 메타 문자들은 특별한 의미를 가지고 있고 대괄호([]) 안에서 사용됩니다.
+메타문자들은 다음과 같습니다:
 
-|Meta character|Description|
+|메타문자|설명|
 |:----:|----|
-|.|Period matches any single character except a line break.|
+|.|마침표는 행바꿈(line break)을 제외한 아무 문자 하나와 일치합니다.|
 |[ ]|Character class. Matches any character contained between the square brackets.|
 |[^ ]|Negated character class. Matches any character that is not contained between the square brackets|
-|*|Matches 0 or more repetitions of the preceding symbol.|
-|+|Matches 1 or more repetitions of the preceding symbol.
-|?|Makes the preceding symbol optional.|
-|{n,m}|Braces. Matches at least "n" but not more than "m" repetitions of the preceding symbol.|
-|(xyz)|Character group. Matches the characters xyz in that exact order.|
+|*|앞에서 나온 기호의 0번 이상의 반복과 일치합니다.|
+|+|앞에서 나온 기호의 1번 이상의 반복과 일치합니다.
+|?|앞에서 나온 기호를 선택사항(optional)으로 만듭니다.|
+|{n,m}|중괄호. 앞에서 나온 기호의 최소 n번 이상, 그러나 m번 미만의 반복과 일치합니다.|
+|(xyz)|문자열그룹. Matches the characters xyz in that exact order.|
 |&#124;|Alternation. Matches either the characters before or the characters after the symbol.|
 |&#92;|Escapes the next character. This allows you to match reserved characters <code>[ ] ( ) { } . * + ? ^ $ \ &#124;</code>|
-|^|Matches the beginning of the input.|
-|$|Matches the end of the input.|
+|^|입력문자열의 시작지점과 일치합니다.|
+|$|입력문자열의 끝지점과 일치합니다.|
 
 ## 2.1 Full stop
 
