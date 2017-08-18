@@ -15,20 +15,20 @@
 
 > 정규 표현식은 텍스트에서 특정 패턴을 찾는데 사용되는 문자나 심볼릭의 집합이다.
 
-정규 표현식(Regular expression)은 문자열에 대해 왼쪽에서 오른쪽으로 일치하는 패턴으로, 보통 "regex" 또는 "regexp", "정규식"으로 줄여 말할수 있다. 정규 표현식은 문자열 재배치, validating form, 패턴 일치에 따라 문자열에서 하위 문자열 추출 등에 사용된다.
+정규 표현식(Regular expression)은 문자열에 대해 왼쪽에서 오른쪽으로 일치하는 패턴으로, 보통 "regex" 또는 "regexp", "정규식"으로 줄여 말할 수 있다. 정규 표현식은 문자열 재배치, validating form, 패턴 일치에 따라 문자열에서 하위 문자열 추출 등에 사용된다.
 
-사용자가 username을 입력할때 규칙을 설정한다고 가정하자. 우리는 username이 이상하지않도록 문자, 숫자 밑줄(`_`), 하이픈(`-`)만 포함하고 길이제한을 설정하고자 할 때, 다음과 같은 정규 표현식으로 검증한다:
+사용자가 username을 입력할때 규칙을 설정한다고 가정하자. 우리는 username이 이상하지 않도록 문자, 숫자 밑줄(`_`), 하이픈(`-`)만 포함하고 길이제한을 설정하고자 할 때, 다음과 같은 정규 표현식으로 검증한다:
 <br/><br/>
 <p align="center">
 <img src="https://i.imgur.com/ekFpQUg.png" alt="Regular expression">
 </p>
 
-위의 정규식은 `join_doe`, `jo-hn_doe`, `john12_as`를 허용한다. 그리나 대문자와 너무 짧은 문자열은 허용하지 않으므로 `Jo`는 매칭되지 않는다.
+위의 정규식은 `join_doe`, `jo-hn_doe`, `john12_as`를 허용한다. 그러나 대문자와 너무 짧은 문자열은 허용하지 않으므로 `Jo`는 매칭되지 않는다.
 
 ## Table of Contents
 
-- [Basic Matchers](#1-basic-matchers)
-- [Meta character](#2-meta-characters)
+- [기본 Matchers](#1-기본-matchers)
+- [메타 문자열](#2-메타-문자열)
   - [Full stop](#21-full-stop)
   - [Character set](#22-character-set)
     - [Negated character set](#221-negated-character-set)
@@ -55,47 +55,45 @@
   - [Multiline](#53-multiline)
 - [Bonus](#bonus)
 
-## 1. Basic Matchers
+## 1. 기본 Matchers
 
-A regular expression is just a pattern of characters that we use to perform search in a text.  For example, the regular expression
-`the` means: the letter `t`, followed by the letter `h`, followed by the letter `e`.
+정규식은 단지 텍스트에서 검색하는데 사용하는 문자열의 패턴이다. 예를 들어, 정규식 `the`는 다음과 같다: 문자 `t`, 다음 문자 `h`, 다음 문자 `e`를 의미한다.
 
 <pre>
 "the" => The fat cat sat on <a href="#learn-regex"><strong>the</strong></a> mat.
 </pre>
 
-[Test the regular expression](https://regex101.com/r/dmRygT/1)
+[정규식 테스트](https://regex101.com/r/dmRygT/1)
 
-The regular expression `123` matches the string `123`. The regular expression is matched against an input string by comparing each
-character in the regular expression to each character in the input string, one after another. Regular expressions are normally
-case-sensitive so the regular expression `The` would not match the string `the`.
+정규식 `123`은 문자열 `123`과 일치한다. The regular expression is matched against an input string by comparing each
+character in the regular expression to each character in the input string, one after another. 정규식은 일반적으로 대소 문자를 구분하므로 정규식 `The`는 문자열 `the`와 일치하지 않는다.
 
 <pre>
 "The" => <a href="#learn-regex"><strong>The</strong></a> fat cat sat on the mat.
 </pre>
 
-[Test the regular expression](https://regex101.com/r/1paXsy/1)
+[정규식 테스트](https://regex101.com/r/1paXsy/1)
 
-## 2. Meta Characters
+## 2. 메타 문자열
 
-Meta characters are the building blocks of the regular expressions.  Meta characters do not stand for themselves but instead are
-interpreted in some special way. Some meta characters have a special meaning and are written inside square brackets.
-The meta characters are as follows:
+메타 문자열은 정규식의 구성요소이며, 그대로를 의미하지 않고 어떤 특별한 방식으로 해석된다. 일부 메타 문자는 특별한 의미를 가지며 대괄호 안에 작성된다.
+메타 문자는 다음과 같다:
 
-|Meta character|Description|
-|:----:|----|
-|.|Period matches any single character except a line break.|
-|[ ]|Character class. Matches any character contained between the square brackets.|
-|[^ ]|Negated character class. Matches any character that is not contained between the square brackets|
-|*|Matches 0 or more repetitions of the preceding symbol.|
-|+|Matches 1 or more repetitions of the preceding symbol.
-|?|Makes the preceding symbol optional.|
-|{n,m}|Braces. Matches at least "n" but not more than "m" repetitions of the preceding symbol.|
-|(xyz)|Character group. Matches the characters xyz in that exact order.|
-|&#124;|Alternation. Matches either the characters before or the characters after the symbol.|
-|&#92;|Escapes the next character. This allows you to match reserved characters <code>[ ] ( ) { } . * + ? ^ $ \ &#124;</code>|
-|^|Matches the beginning of the input.|
-|$|Matches the end of the input.|
+메타 문자 | 설명
+:---: | ------------------------------------------------------------------------------------------------------
+  .   | 마침표는 줄 바꿈을 제외한 모든 단일 문자와 일치한다.
+ [ ]  | 문자 집합. 대괄호 사이에 포함 된 모든 문자와 일치한다.
+[^ ]  | 부정 문자 집합. 대괄호 사이에 포함되지 않은 문자와 일치한다.
+  *   | 앞의 문자가 없거나 하나 이상 연속하는 문자와 일치한다.
+  +   | 앞의 문자라 하나 이상 연속하는 문자와 일치한다.
+  ?   | 앞의 문자가 없거나 하나만 있을 경우 일치한다.
+{n,m} | Braces. Matches at least "n" but not more than "m" repetitions of the preceding symbol.
+(xyz) | Character group. Matches the characters xyz in that exact order.
+  |   | Alternation. Matches either the characters before or the characters after the symbol.
+  \   | Escapes the next character. This allows you to match reserved characters `[ ] ( ) { } . * + ? ^ $ \ |`
+  ^   | Matches the beginning of the input.
+  $   | Matches the end of the input.
+
 
 ## 2.1 Full stop
 
