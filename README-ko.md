@@ -82,17 +82,17 @@ character in the regular expression to each character in the input string, one a
 메타 문자 | 설명
 :---: | ------------------------------------------------------------------------------------------------------
   .   | 마침표는 줄 바꿈을 제외한 모든 단일 문자와 일치한다.
- [ ]  | 문자 집합. 대괄호 사이에 포함 된 모든 문자와 일치한다.
+ [ ]  | 문자 집합(Character class). 대괄호 사이에 포함 된 모든 문자와 일치한다.
 [^ ]  | 부정 문자 집합. 대괄호 사이에 포함되지 않은 문자와 일치한다.
-  *   | 앞의 문자가 없거나 하나 이상 연속하는 문자와 일치한다.
-  +   | 앞의 문자라 하나 이상 연속하는 문자와 일치한다.
+  \*  | 앞의 문자가 없거나 하나 이상 연속하는 문자와 일치한다.
+  \+  | 앞의 문자라 하나 이상 연속하는 문자와 일치한다.
   ?   | 앞의 문자가 없거나 하나만 있을 경우 일치한다.
-{n,m} | Braces. Matches at least "n" but not more than "m" repetitions of the preceding symbol.
-(xyz) | Character group. Matches the characters xyz in that exact order.
-  |   | Alternation. Matches either the characters before or the characters after the symbol.
-  \   | Escapes the next character. This allows you to match reserved characters `[ ] ( ) { } . * + ? ^ $ \ |`
-  ^   | Matches the beginning of the input.
-  $   | Matches the end of the input.
+{n,m} | Braces. 앞의 문자가 "n"개 이상 "m"개 이하일 경우 일치한다.
+(xyz) | 문자 집합(Character group). 정확한 순서로 문자열 xyz와 매칭된다.
+  \|  | Alternation. 기호(`|`) 앞에있는 문자 또는 기호 뒤에 나오는 문자와 일치한다.
+  \\  | 다음 문자를 이스케이프 처리한다. 즉, 예약문자를 매칭시킬 수 있다 `[ ] ( ) { } . * + ? ^ $ \ |`
+  ^   | 입력의 시작과 일치한다.
+  $   | 입력의 끝과 일치한다.
 
 
 ## 2.1 Full stop
