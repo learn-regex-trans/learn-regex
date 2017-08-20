@@ -32,7 +32,7 @@ contains uppercase letter and also it is too short.
 
 ## Table of Contents
 
-- [기본 Matchers](#1-기본-matchers)
+- [기본 매칭](#1-기본-매칭)
 - [Meta character](#2-meta-characters)
   - [Full stop](#21-full-stop)
   - [Character set](#22-character-set)
@@ -60,22 +60,25 @@ contains uppercase letter and also it is too short.
   - [Multiline](#53-multiline)
 - [Bonus](#bonus)
 
-## 1. 기본 Matchers
 
-정규식은 단지 텍스트에서 검색하는데 사용하는 문자열의 패턴입니다. 예를 들어, 정규식 `the`는 다음과 같다: 문자 `t`, 다음 문자 `h`, 다음 문자 `e`를 의미합니다.
+## 1. 기본 매칭
+
+정규식은 특정 텍스트를 검색하기 위해 수행하는 문자 패턴을 의미합니다. 예를 들어, 정규식 `the` 의 의미는 다음과 같습니다: `t`, 다음에 `h` 가 오고, 다음에 `e` 가 오는 문자열 패턴.
 
 <pre>
 "the" => The fat cat sat on <a href="#learn-regex"><strong>the</strong></a> mat.
 </pre>
 
-[정규식 테스트](https://regex101.com/r/dmRygT/1)
+[정규식 테스트 해보기](https://regex101.com/r/dmRygT/1)
 
-정규식 `123`은 문자열 `123`과 일치합니다. The regular expression is matched against an input string by comparing each
-character in the regular expression to each character in the input string, one after another. 정규식은 일반적으로 대소 문자를 구분하므로 정규식 `The`는 문자열 `the`와 일치하지 않습니다.
+정규식 `123` 은 문자열 `123` 과 매칭됩니다. 정규식에서는 입력문자열과 정규식을 한 문자씩, 차례대로 비교하면서 입력문자열과 매칭합니다. 정규식은 보통 대/소문자를 구분(case-sensitive)
+하기 때문에 정규식 `The` 는 문자열 `the` 와 매칭되지 않습니다.
 
 <pre>
 "The" => <a href="#learn-regex"><strong>The</strong></a> fat cat sat on the mat.
 </pre>
+
+[정규식 테스트 해보기](https://regex101.com/r/1paXsy/1)
 
 ## 2. Meta Characters
 
