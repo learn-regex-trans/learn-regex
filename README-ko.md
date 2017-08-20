@@ -28,7 +28,7 @@ characters in username so it does not look ugly. We use the following regular ex
 </p>
 
 Above regular expression can accept the strings `john_doe`, `jo-hn_doe` and `john12_as`. It does not match `Jo` because that string
-contains uppercase letter and also it is too short.  
+contains uppercase letter and also it is too short.
 
 ## Table of Contents
 
@@ -49,11 +49,11 @@ contains uppercase letter and also it is too short.
     - [Caret](#281-caret)
     - [Dollar](#282-dollar)
 - [Shorthand Character Sets](#3-shorthand-character-sets)
-- [Lookaround](#4-lookaround)
-  - [Positive Lookahead](#41-positive-lookahead)
-  - [Negative Lookahead](#42-negative-lookahead)
-  - [Positive Lookbehind](#43-positive-lookbehind)
-  - [Negative Lookbehind](#44-negative-lookbehind)
+- [전후방탐색](#4-lookaround)
+  - [긍정혀 전방탐색](#41-positive-lookahead)
+  - [부정형 전방탐색](#42-negative-lookahead)
+  - [긍정형 후방탐색](#43-positive-lookbehind)
+  - [부정형 후방탐색](#44-negative-lookbehind)
 - [Flags](#5-flags)
   - [Case Insensitive](#51-case-insensitive)
   - [Global search](#52-global-search)
@@ -332,72 +332,64 @@ regular expressions. The shorthand character sets are as follows:
 |\s|Matches whitespace character: `[\t\n\f\r\p{Z}]`|
 |\S|Matches non-whitespace character: `[^\s]`|
 
-## 4. Lookaround
+## 4. 전후방탐색
 
-Lookbehind and lookahead sometimes known as lookaround are specific type of ***non-capturing group*** (Use to match the pattern but not
-included in matching list). Lookaheads are used when we have the condition that this pattern is preceded or followed by another certain
-pattern. For example, we want to get all numbers that are preceded by `$` character from the following input string `$4.44 and $10.88`.
-We will use following regular expression `(?<=\$)[0-9\.]*` which means: get all the numbers which contain `.` character and  are preceded
-by `$` character. Following are the lookarounds that are used in regular expressions:
+전방탐색(Lookahead)과 후방탐색(Lookbehind)으로 알려진 전후방탐색(Lookaround)은 ***non-capturing group***의 특별 타입입니다(패턴 매칭에는 사용하지만 매칭
+결과 리스트에는 포함되지 않음). 전후방탐색은 패턴이 앞에 있거나 다른 패턴이 뒤따른 조건을 가질 때 사용됩니다. 예를 들어, 입력 문자열 `$ 4.44 and $ 10.88`에서 `$` 문자가
+앞에오는 모든 숫자를 얻고 싶을 때, 정규식 ``(?<=\$)[0-9\.]*``을 사용합니다: `$`가 앞에 오는 모든 숫자 혹은 `.`문자. 다음은 정규식에서 사용되는 전후방탐색입니다.
 
-|Symbol|Description|
-|:----:|----|
-|?=|Positive Lookahead|
-|?!|Negative Lookahead|
-|?<=|Positive Lookbehind|
-|?<!|Negative Lookbehind|
+기호  | 설명
+:-: | --------
+?=  | 긍정형 전방탐색
+?!  | 부정형 전방탐색
+?<= | 긍정형 후방탐색
+?<! | 부정형 후방탐색
 
-### 4.1 Positive Lookahead
 
-The positive lookahead asserts that the first part of the expression must be followed by the lookahead expression. The returned match
-only contains the text that is matched by the first part of the expression. To define a positive lookahead, parentheses are used. Within
-those parentheses, a question mark with equal sign is used like this: `(?=...)`. Lookahead expression is written after the equal sign inside
-parentheses. For example, the regular expression `[T|t]he(?=\sfat)` means: optionally match lowercase letter `t` or uppercase letter `T`,
-followed by letter `h`, followed by letter `e`. In parentheses we define positive lookahead which tells regular expression engine to match
-`The` or `the` which are followed by the word `fat`.
+### 4.1 긍정형 전방탐색
+
+긍정형 전방탐색은 표현식의 첫번째 부분에 반드시 전방탐색 표현식이 와야한다고 주장합니다. 반환되는 일치는 표현식의 첫번째 부분에 일치하는 텍스트만 포함합니다. 긍정형 전방탐색은
+`(?=...)`와 같이 괄호안에 등호 기호와 물음표로 정의합니다. 전방형 표현식은 괄호안의 등호 기호 다음에 작성합니다. 예를 들어, 정규식 `[T|t]he(?=\sfat)`은 다음과 같습니다:
+` fat`이 뒤따르는 `The` 혹은 `the`
 
 <pre>
 "[T|t]he(?=\sfat)" => <a href="#learn-regex"><strong>The</strong></a> fat cat sat on the mat.
 </pre>
 
-[Test the regular expression](https://regex101.com/r/IDDARt/1)
+[정규식 테스트](https://regex101.com/r/IDDARt/1)
 
-### 4.2 Negative Lookahead
+### 4.2 부정형 전방탐색
 
-Negative lookahead is used when we need to get all matches from input string that are not followed by a pattern. Negative lookahead
-defined same as we define positive lookahead but the only difference is instead of equal `=` character we use negation `!` character
-i.e. `(?!...)`. Let's take a look at the following regular expression `[T|t]he(?!\sfat)` which means: get all `The` or `the` words from
-input string that are not followed by the word `fat` precedes by a space character.
+부정형 전방탐색은 패턴이 뒤따르지 않는 입력 문자열에서 일치하는 모든 것을 가져와야 할 때 사용됩니다. 부정형 전방탐색은 긍정형 전방탐색와 비슷하지만 `=` 대신에 부정 문자 `!`로 정의합니다.
+즉, `(?!...)`과 같습니다. 다음 정규식 `[T|t]he(?!\sfat)` 다음과 같습니다: 문자열 ` fat`가 뒤따르지 않는 모든 `The` 혹은 `the`.
 
 <pre>
 "[T|t]he(?!\sfat)" => The fat cat sat on <a href="#learn-regex"><strong>the</strong></a> mat.
 </pre>
 
-[Test the regular expression](https://regex101.com/r/V32Npg/1)
+[정규식 테스트](https://regex101.com/r/V32Npg/1)
 
-### 4.3 Positive Lookbehind
+### 4.3 긍정형 후방탐색
 
-Positive lookbehind is used to get all the matches that are preceded by a specific pattern. Positive lookbehind is denoted by
-`(?<=...)`. For example, the regular expression `(?<=[T|t]he\s)(fat|mat)` means: get all `fat` or `mat` words from input string that
-are after the word `The` or `the`.
+긍정형 후방탐색은 특정 패턴이 앞에 있고 일치하는 것을 얻는 데 사용됩니다. 긍정형 후방탐색은 `(?<=...)`로 표시됩니다. 예를 들어, 정규식 `(?<=[T|t]he\s)(fat|mat)`는
+다음을 뜻합니다: 입력 문자열에 `The ` 혹은 `the `가 앞에 있는 모든 `fat`, `mat`.
 
 <pre>
 "(?<=[T|t]he\s)(fat|mat)" => The <a href="#learn-regex"><strong>fat</strong></a> cat sat on the <a href="#learn-regex"><strong>mat</strong></a>.
 </pre>
 
-[Test the regular expression](https://regex101.com/r/avH165/1)
+[정규식 테스트](https://regex101.com/r/avH165/1)
 
-### 4.4 Negative Lookbehind
+### 4.4 부정형 후방탐색
 
-Negative lookbehind is used to get all the matches that are not preceded by a specific pattern. Negative lookbehind is denoted by
-`(?<!...)`. For example, the regular expression `(?<!(T|t)he\s)(cat)` means: get all `cat` words from input string that
-are not after the word `The` or `the`.
+부정형 후방탐색은 특정 패턴이 앞에 없어 일치하는 것을 얻는 데 사용됩니다. 부정형 후방탐색은 `(?<!...)`로 표시됩니다. 예를 들어, 정규식 `(?<!(T|t)he\s)(cat)`은 다음을
+뜻합니다: 입력 문자열로부터 `The `나 `the `가 앞에 없는 모든 `cat`.
 
 <pre>
 "(?&lt;![T|t]he\s)(cat)" => The cat sat on <a href="#learn-regex"><strong>cat</strong></a>.
 </pre>
 
-[Test the regular expression](https://regex101.com/r/8Efx5G/1)
+[정규식 테스트](https://regex101.com/r/8Efx5G/1)
 
 ## 5. Flags
 
