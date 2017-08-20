@@ -34,20 +34,20 @@ contains uppercase letter and also it is too short.
 
 - [Basic Matchers](#1-basic-matchers)
 - [메타 문자열](#2-메타-문자열)
-  - [Full stop](#21-full-stop)
-  - [Character set](#22-character-set)
-    - [Negated character set](#221-negated-character-set)
-  - [Repetitions](#23-repetitions)
-    - [The Star](#231-the-star)
-    - [The Plus](#232-the-plus)
-    - [The Question Mark](#233-the-question-mark)
-  - [Braces](#24-braces)
-  - [Character Group](#25-character-group)
-  - [Alternation](#26-alternation)
-  - [Escaping special character](#27-escaping-special-character)
-  - [Anchors](#28-anchors)
-    - [Caret](#281-caret)
-    - [Dollar](#282-dollar)
+  - [마침표](#21-full-stop)
+  - [문자 집합](#22-character-set)
+    - [부정 문자 집합](#221-negated-character-set)
+  - [반복](#23-repetitions)
+    - [애스터리스크](#231-the-star)
+    - [플러스](#232-the-plus)
+    - [물음표](#233-the-question-mark)
+  - [중괄호](#24-braces)
+  - [문자 그룹](#25-character-group)
+  - [대안](#26-alternation)
+  - [이스케이프된 특수 문자](#27-escaping-special-character)
+  - [앵커](#28-anchors)
+    - [캐럿](#281-caret)
+    - [달러](#282-dollar)
 - [Shorthand Character Sets](#3-shorthand-character-sets)
 - [Lookaround](#4-lookaround)
   - [Positive Lookahead](#41-positive-lookahead)
@@ -87,7 +87,7 @@ case-sensitive so the regular expression `The` would not match the string `the`.
 메타 문자는 다음과 같다:
 
 메타 문자 | 설명
-:---: | ------------------------------------------------------------------------------------------------------
+:---: | ---------------------------------------------------------------------------------
   .   | 마침표는 줄 바꿈을 제외한 모든 단일 문자와 일치한다.
  [ ]  | 문자 집합(Character class). 대괄호 사이에 포함 된 모든 문자와 일치한다.
 [^ ]  | 부정 문자 집합. 대괄호 사이에 포함되지 않은 문자와 일치한다.
@@ -222,11 +222,9 @@ case-sensitive so the regular expression `The` would not match the string `the`.
 
 ## 2.5 문자 그룹
 
-Character group is a group of sub-patterns that is written inside Parentheses `(...)`. As we discussed before that in regular expression
-if we put a quantifier after a character then it will repeat the preceding character. But if we put quantifier after a character group then
-it repeats the whole character group. For example, the regular expression `(ab)*` matches zero or more repetitions of the character "ab".
-We can also use the alternation `|` meta character inside character group. For example, the regular expression `(c|g|p)ar` means: lowercase character `c`,
-`g` or `p`, followed by character `a`, followed by character `r`.
+문자 그룹은 괄호 `(...)` 사이에 작성된 하위 패턴의 그룹입니다. 앞서 정규식에서 설명한 것처럼 문자 뒤에 반복자를 넣으면 한정 기호를 반복할 것입니다. 그러나 문자 그룹 다음에 반복자를
+입력하면 문자 그룹 전체를 반복할 것입니다. 예를 들어, 정규식 `(ab)*`는 문자 "ab"가 0개 이상의 반복과 일치합니다. 또한 문자 그룹안에 대응 문자 `|`를 사용할 수 있습니다. 예를 들어,
+정규식 `(c|g|p)ar`은 소문자 `c`, `g`, `p` 중 하나, 다음에 `a`, 다음 `r`을 의미합니다.
 
 <pre>
 "(c|g|p)ar" => The <a href="#learn-regex"><strong>car</strong></a> is <a href="#learn-regex"><strong>par</strong></a>ked in the <a href="#learn-regex"><strong>gar</strong></a>age.
@@ -236,11 +234,9 @@ We can also use the alternation `|` meta character inside character group. For e
 
 ## 2.6 대안
 
-In regular expression Vertical bar `|` is used to define alternation. Alternation is like a condition between multiple expressions. Now,
-you may be thinking that character set and alternation works the same way. But the big difference between character set and alternation
-is that character set works on character level but alternation works on expression level. For example, the regular expression
-`(T|t)he|car` means: uppercase character `T` or lowercase `t`, followed by lowercase character `h`, followed by lowercase character `e`
-or lowercase character `c`, followed by lowercase character `a`, followed by lowercase character `r`.
+정규식에서 수직 바 `|`는 대안을 정의하는데 사용됩니다. 대안은 여러 언어에서 조건과 비슷합니다. 문자 집합(character set)과 대안(alternation)이 같은 방식으로 동작한다고
+생각할 수도 있습니다. 그러나 문자집합과 대안 사이에 큰 다른점이 있습니다. 문자 집합은 문자 수준(character level)으로 동작하지만 대안은 표현 수준(expression level)에서
+동작합니다. 예를 들어, 정규식 `(T|t)he|car`는 대문자 `T` 또는 소문자 `t` 다음에 소문자 `h`, 소문자 `e` 또는 소문자 `c`, 소문자 `a`, 소문자 `r` 와 일치함을 의미합니다.
 
 <pre>
 "(T|t)he|car" => <a href="#learn-regex"><strong>The</strong></a> <a href="#learn-regex"><strong>car</strong></a> is parked in <a href="#learn-regex"><strong>the</strong></a> garage.
@@ -250,11 +246,9 @@ or lowercase character `c`, followed by lowercase character `a`, followed by low
 
 ## 2.7 이스케이프된 특수 문자
 
-Backslash `\` is used in regular expression to escape the next character. This allows to to specify a symbol as a matching character
-including reserved characters `{ } [ ] / \ + * . $ ^ | ?`. To use a special character as a matching character prepend `\` before it.
-For example, the regular expression `.` is used to match any character except newline. Now to match `.` in an input string the regular
-expression `(f|c|m)at\.?` means: lowercase letter `f`, `c` or `m`, followed by lowercase character `a`, followed by lowercase letter
-`t`, followed by optional `.` character.
+`\\`는 정규식에서 다음 문자를 이스케이프 처리하는데 사용됩니다. 이것으로 예약 문자 `{ } [ ] / \ + * . $ ^ | ?`를 일치하는 문자 기호로 지정할 수 있습니다. 그러므로
+예약 문자를 매칭 문자로 사용하려면 앞에 `\\`를 사용하십시오. 예를 들어, 정규식 `.`은 개행 문자를 제외한 모든 문자를 매치하는 데 사용된다. 입력 문자열에서 `.`와 일치
+시키기위한 정규식 `(f|c|m)at\.?`는 소문자 `f`, `c`, `m` 중 하나, 다음 소문자 `a`, 그 다음 소문자 `t` 그리고 선택적으로 `.`(특수 문자가 아닌 일반 문자)와 일치합니다.
 
 <pre>
 "(f|c|m)at\.?" => The <a href="#learn-regex"><strong>fat</strong></a> <a href="#learn-regex"><strong>cat</strong></a> sat on the <a href="#learn-regex"><strong>mat.</strong></a>
@@ -264,18 +258,14 @@ expression `(f|c|m)at\.?` means: lowercase letter `f`, `c` or `m`, followed by l
 
 ## 2.8 앵커
 
-In regular expressions, we use anchors to check if the matching symbol is the starting symbol or ending symbol of the
-input string. Anchors are of two types: First type is Caret `^` that check if the matching character is the start
-character of the input and the second type is Dollar `$` that checks if matching character is the last character of the
-input string.
+정규식에서 앵커를 사용하여 일치하는 기호가 입력 문자열의 시작 또는 끝 기호인지 확인합니다. 앵커는 두 가지 유형이 있습니다: 첫 번째 유형 캐럿(`^`)은 입력의 시작 문자인지
+확인하고, 두 번째 달러(`$`)는 마지막 문자인지 확인합니다.
 
 ### 2.8.1 캐럿
 
-Caret `^` symbol is used to check if matching character is the first character of the input string. If we apply the following regular
-expression `^a` (if a is the starting symbol) to input string `abc` it matches `a`. But if we apply regular expression `^b` on above
-input string it does not match anything. Because in input string `abc` "b" is not the starting symbol. Let's take a look at another
-regular expression `^(T|t)he` which means: uppercase character `T` or lowercase character `t` is the start symbol of the input string,
-followed by lowercase character `h`, followed by lowercase character `e`.
+`^`은 매칭 문자가 입력문자열의 첫번째 문자인지 확인하는데 사용됩니다. 정규식 `^a`(a가 시작일 경우)는 입력 문자열 `abc`에 적용하면 `a`와 일치합니다. 그러나 `abc`를 정규식
+`^b`에 적용하면 어느 것이도 매칭되지 않습니다. 왜냐하면 입력문자열 `abc`에서 `b`는 시작 기호가 아니기 때문입니다. 다음 정규식 `^(T|t)he`는 대문자 `T` 또는 소문자 `t`는
+입력 문자열의 시작 기호이고 다음에 소문자 `h`, 다음에 소문자 `e`와 일치하는 것을 뜻합니다.
 
 <pre>
 "(T|t)he" => <a href="#learn-regex"><strong>The</strong></a> car is parked in <a href="#learn-regex"><strong>the</strong></a> garage.
@@ -291,9 +281,8 @@ followed by lowercase character `h`, followed by lowercase character `e`.
 
 ### 2.8.2 달러
 
-Dollar `$` symbol is used to check if matching character is the last character of the input string. For example, regular expression
-`(at\.)$` means: a lowercase character `a`, followed by lowercase character `t`, followed by a `.` character and the matcher
-must be end of the string.
+`$` 기호는 일치하는 문자가 입력 문자열의 마지막 문자인지 확인하는 데 사용됩니다. 예를 들어, 정규식 `(at\.)$`은 소문자 `a`, 소문자 `t`, 뒤에 `.` 문자가 오고, 반드시
+문자열의 끝이어야 합니다.
 
 <pre>
 "(at\.)" => The fat c<a href="#learn-regex"><strong>at.</strong></a> s<a href="#learn-regex"><strong>at.</strong></a> on the m<a href="#learn-regex"><strong>at.</strong></a>
