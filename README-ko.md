@@ -317,20 +317,20 @@ must be end of the string.
 
 [Test the regular expression](https://regex101.com/r/t0AkOd/1)
 
-##  3. Shorthand Character Sets
+##  3. 축약 문자 집합
 
-Regular expression provides shorthands for the commonly used character sets, which offer convenient shorthands for commonly used
-regular expressions. The shorthand character sets are as follows:
+정규식은 일반적으로 사용되는 문자집합에 대한 축약형을 제공하며, 일반적으로 사용되는 정규식을 위한 편리한 축약어를 제공합니다. 
+축약형 문자 집합은 다음과 같습니다:
 
-|Shorthand|Description|
+| 축약식 | 설명 |
 |:----:|----|
-|.|Any character except new line|
-|\w|Matches alphanumeric characters: `[a-zA-Z0-9_]`|
-|\W|Matches non-alphanumeric characters: `[^\w]`|
-|\d|Matches digit: `[0-9]`|
-|\D|Matches non-digit: `[^\d]`|
-|\s|Matches whitespace character: `[\t\n\f\r\p{Z}]`|
-|\S|Matches non-whitespace character: `[^\s]`|
+|  .   | 개행을 제외한 문자                  |
+|  \w  | 알파벳이나 숫자: `[a-zA-Z0-9_]`     |
+|  \W  | 알파벳이나 숫자를 제외한 문자: `[^\w]` |
+|  \d  | 숫자: `[0-9]`                    |
+|  \D  | 숫자를 제외한 문자: `[^\d]`         |
+|  \s  | 공백 문자: `[\t\n\f\r\p{Z}]`      |
+|  \S  | 공백 문자를 제외한 문자: `[^\s]`     |
 
 ## 4. Lookaround
 
