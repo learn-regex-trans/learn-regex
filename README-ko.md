@@ -412,8 +412,7 @@ are not after the word `The` or `the`.
 
 ### 5.1 대소문자 무시
 
-`i` 변경자(modifier)는 대소문자 무시를 한 결과를 보여준다. 예를 들어, 정규식 `/The/gi`은 `the`, `THE`, `THe` 와 같은 대소문자가 무시된 문자를 찾는다. 참고적으로
-여기서 g 플래그는 전체 문자열에서 매칭된 모든 문자열을 반환하는 것을 의미한다.
+`i` 변경자(modifier)는 대소문자 무시를 한 결과를 보여준다. 예를 들어, 정규식 `/The/gi`은 `the`, `THE`, `THe` 와 같은 대소문자가 무시된 문자를 찾는다. 참고적으로 여기서 g 플래그는 전체 문자열에서 매칭된 모든 문자열을 반환하는 것을 의미한다.
 
 <pre>
 "The" => <a href="#learn-regex"><strong>The</strong></a> fat cat sat on the mat.
