@@ -28,7 +28,7 @@ characters in username so it does not look ugly. We use the following regular ex
 </p>
 
 Above regular expression can accept the strings `john_doe`, `jo-hn_doe` and `john12_as`. It does not match `Jo` because that string
-contains uppercase letter and also it is too short.  
+contains uppercase letter and also it is too short.
 
 ## Table of Contents
 
@@ -399,61 +399,56 @@ are not after the word `The` or `the`.
 
 [Test the regular expression](https://regex101.com/r/8Efx5G/1)
 
-## 5. Flags
+## 5. 플래그(Flags)
 
-Flags are also called modifiers because they modify the output of a regular expression. These flags can be used in any order or
-combination, and are an integral part of the RegExp.
+플래그는 변경자(modifier)라고도 불린다. 왜냐하면 정규식의 결과물을 수정할 수 있기 떄문이다.
+이러한 플래그는 순서에 관계없이 조합하여 사용 가능하며, 정규식의 필수적인 요소이다.
 
 |Flag|Description|
 |:----:|----|
-|i|Case insensitive: Sets matching to be case-insensitive.|
-|g|Global Search: Search for a pattern throughout the input string.|
-|m|Multiline: Anchor meta character works on each line.|
+|i|대소문자 무시: 대소문자 구분 특성이 무시된다.|
+|g|전역 검색: 매칭에 해당하는 여러 개의 일치항목을 찾는다.|
+|m|멀티라인(Multiline): 앵커(Anchor) 문자가 각 행마다 작동한다.|
 
-### 5.1 Case Insensitive
+### 5.1 대소문자 무시
 
-The `i` modifier is used to perform case-insensitive matching. For example, the regular expression `/The/gi` means: uppercase letter
-`T`, followed by lowercase character `h`, followed by character `e`. And at the end of regular expression the `i` flag tells the
-regular expression engine to ignore the case. As you can see we also provided `g` flag because we want to search for the pattern in
-the whole input string.
+`i` 변경자(modifier)는 대소문자 무시를 한 결과를 보여준다. 예를 들어, 정규식 `/The/gi`은 `the`, `THE`, `THe` 와 같은 대소문자가 무시된 문자를 찾는다. 참고적으로
+여기서 g 플래그는 전체 문자열에서 매칭된 모든 문자열을 반환하는 것을 의미한다.
 
 <pre>
 "The" => <a href="#learn-regex"><strong>The</strong></a> fat cat sat on the mat.
 </pre>
 
-[Test the regular expression](https://regex101.com/r/dpQyf9/1)
+[정규식 테스트](https://regex101.com/r/dpQyf9/1)
 
 <pre>
 "/The/gi" => <a href="#learn-regex"><strong>The</strong></a> fat cat sat on <a href="#learn-regex"><strong>the</strong></a> mat.
 </pre>
 
-[Test the regular expression](https://regex101.com/r/ahfiuh/1)
+[정규식 테스트](https://regex101.com/r/ahfiuh/1)
 
-### 5.2 Global search
+### 5.2 전역 검색
 
-The `g` modifier is used to perform a global match (find all matches rather than stopping after the first match). For example, the
-regular expression`/.(at)/g` means: any character except new line, followed by lowercase character `a`, followed by lowercase
-character `t`. Because we provided `g` flag at the end of the regular expression now it will find every matches from whole input
-string.
+`g` 플래그는 전역 매칭(첫번째 일치하는 결과를 찾은 후에도 멈추지 않고 전체적으로 결과 검색)을 수행하는데 사용됩니다. 예를 들어, 정규식 `/.(at)/g`은 개행을 제외한 문자,
+다음 소문자 `a`, 다음 소문자 `t`를 뜻하며, `g` 플래그가 있으므로 전체 입력 문자열에서 일치하는 모든 문자를 찾을 것입니다.
 
 <pre>
 "/.(at)/" => The <a href="#learn-regex"><strong>fat</strong></a> cat sat on the mat.
 </pre>
 
-[Test the regular expression](https://regex101.com/r/jnk6gM/1)
+[정규식 테스트](https://regex101.com/r/jnk6gM/1)
 
 <pre>
 "/.(at)/g" => The <a href="#learn-regex"><strong>fat</strong></a> <a href="#learn-regex"><strong>cat</strong></a> <a href="#learn-regex"><strong>sat</strong></a> on the <a href="#learn-regex"><strong>mat</strong></a>.
 </pre>
 
-[Test the regular expression](https://regex101.com/r/dO1nef/1)
+[정규식 테스트](https://regex101.com/r/dO1nef/1)
 
-### 5.3 Multiline
+### 5.3 멀티라인
 
-The `m` modifier is used to perform a multi-line match. As we discussed earlier anchors `(^, $)` are used to check if pattern is
-the beginning of the input or end of the input string. But if we want that anchors works on each line we use `m` flag. For example, the
-regular expression `/at(.)?$/gm` means: lowercase character `a`, followed by lowercase character `t`, optionally anything except new
-line. And because of `m` flag now regular expression engine matches pattern at the end of each line in a string.
+`m` 플래그는 다중 행 일치를 수행하는데 사용됩니다. 전에 언급한 앵커 `(^, $)`는 패턴이 입력문자열의 시작 혹은 끝인지 확인하는 데 사용됩니다. 하지만 각 라인에서 동작하기를
+원한다면 플래그 `m`을 사용하십시오. 예를 들어, 정규식 `/at(.)?$/gm`은 다음을 뜻합니다: 소문자 `a`, 다음 소문자 `t`, 옵션으로 개행을 제외한 아무 문자. 그리고 `m` 플래그
+때문에 정규식 엔진은 문자열의 각 라인 끝에 패턴을 매치합니다.
 
 <pre>
 "/.at(.)?$/" => The fat
@@ -461,7 +456,7 @@ line. And because of `m` flag now regular expression engine matches pattern at t
                 on the <a href="#learn-regex"><strong>mat.</strong></a>
 </pre>
 
-[Test the regular expression](https://regex101.com/r/hoGMkP/1)
+[정규식 테스트](https://regex101.com/r/hoGMkP/1)
 
 <pre>
 "/.at(.)?$/gm" => The <a href="#learn-regex"><strong>fat</strong></a>
@@ -469,7 +464,7 @@ line. And because of `m` flag now regular expression engine matches pattern at t
                   on the <a href="#learn-regex"><strong>mat.</strong></a>
 </pre>
 
-[Test the regular expression](https://regex101.com/r/E88WE2/1)
+[정규식 테스트](https://regex101.com/r/E88WE2/1)
 
 ## Contribution
 
